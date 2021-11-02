@@ -15,6 +15,8 @@ import Java.zoo.animals.herbivoresAnimals.Duck;
 import Java.zoo.animals.herbivoresAnimals.Fish;
 import Java.zoo.animals.herbivoresAnimals.Zebra;
 
+import java.lang.reflect.Array;
+
 public class Zoo {
     public static void main(String[] args) {
         BlackPanther blackPanther = new BlackPanther("normal", "aggressive", 4,false, "RRRRRRRR");
@@ -36,11 +38,17 @@ public class Zoo {
         worker.feed(zebra, parsley);
         worker.getVoice(duck);
         worker.getVoice(blackPanther);
+        blackPanther.run();
+        blackPanther.sleep();
+        blackPanther.voice();
+        eagle.fly();
+        eagle.sleep();
+        eagle.getOffspring();
+
         Animal[] poolOfAnimals =  {blackPanther, raccoon, duck, fish,zebra };
+
         for(int i = 0; i < poolOfAnimals.length; i++){
-            if (poolOfAnimals[i] instanceof Swim){
-                ((Swim)poolOfAnimals[i]).swim();
-            }
+            ((Swim)poolOfAnimals[i]).swim();
         }
     }
 }
