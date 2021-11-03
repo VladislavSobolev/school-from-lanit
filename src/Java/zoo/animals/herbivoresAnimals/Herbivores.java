@@ -1,20 +1,26 @@
 package Java.zoo.animals.herbivoresAnimals;
 
+import Java.zoo.SizeOfAviary;
 import Java.zoo.animals.Animal;
 import Java.zoo.food.Food;
+import Java.zoo.food.WrongFoodException;
+import Java.zoo.food.grass.Grass;
 import Java.zoo.food.meat.Meat;
 
 import java.io.PrintStream;
 
 
-public abstract class Herbivores extends Animal {
+public abstract class Herbivores extends Animal  {
+
 
     private String health;
     private int age;
+    private SizeOfAviary size;
 
-    public Herbivores(String health, int age) {
+    public Herbivores(String health, int age, SizeOfAviary size) {
         this.health = health;
         this.age = age;
+        this.size = size;
     }
 
 
@@ -37,11 +43,20 @@ public abstract class Herbivores extends Animal {
     }
 
     @Override
-    public PrintStream eat(Food foodName) {
+    public PrintStream eat(Food foodName) throws WrongFoodException {
         if (foodName instanceof Meat) {
-            return System.out.printf("I don't eat %s. I need grass! \n", foodName.getName());
+            throw new WrongFoodException("Wrong food");
         } else  {
             return System.out.printf("Now i eat %s \n", foodName.getName());
         }
+
+    }
+
+    public SizeOfAviary getSize() {
+        return size;
+    }
+
+    public void setSize(SizeOfAviary size) {
+        this.size = size;
     }
 }

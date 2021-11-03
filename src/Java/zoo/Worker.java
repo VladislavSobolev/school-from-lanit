@@ -2,7 +2,8 @@ package Java.zoo;
 
 import Java.zoo.animals.Animal;
 import Java.zoo.animals.Voice;;
-import Java.zoo.food.Food;;
+import Java.zoo.food.Food;
+import Java.zoo.food.WrongFoodException;;
 
 public class Worker implements Voice {
     private String health;
@@ -15,7 +16,11 @@ public class Worker implements Voice {
 
 
     public void feed(Animal animal, Food food){
-        animal.eat(food);
+        try {
+            animal.eat(food);
+        } catch (WrongFoodException e) {
+            e.printStackTrace();
+        }
     }
     public void getVoice(Voice animal) {
         animal.voice();

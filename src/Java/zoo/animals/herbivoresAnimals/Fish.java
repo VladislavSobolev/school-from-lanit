@@ -1,14 +1,17 @@
 package Java.zoo.animals.herbivoresAnimals;
 
+import Java.zoo.SizeOfAviary;
 import Java.zoo.animals.Sleep;
 import Java.zoo.animals.Swim;
 
 
 public class Fish extends Herbivores implements Swim, Sleep {
 
+    private String name;
 
-    public Fish( String health, int age) {
-        super( health, age);
+    public Fish( String health, int age,SizeOfAviary size, String name ) {
+        super( health, age, size);
+        this.name = name;
     }
 
 
@@ -31,6 +34,29 @@ public class Fish extends Herbivores implements Swim, Sleep {
 
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    @Override
+    public int hashCode(){
+        return name == null ? 0 : name.hashCode();
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(obj == this)  {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()){
+            return false;
+        }
+        Fish animal = (Fish) obj;
+        return ((name != null) && (animal.name != null) && (name.equalsIgnoreCase(animal.name)));
+    }
 
 }
 

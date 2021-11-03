@@ -1,6 +1,8 @@
 package Java.zoo.animals.carnivorousAnimals;
 
+import Java.zoo.SizeOfAviary;
 import Java.zoo.animals.Animal;
+import Java.zoo.food.WrongFoodException;
 import Java.zoo.food.grass.Grass;
 import Java.zoo.food.Food;
 
@@ -11,12 +13,15 @@ public abstract class Carnivorous extends Animal {
     private String health;
     private String aggressiveness;
     private int age;
+    private SizeOfAviary size;
 
 
-    public Carnivorous(String health, String aggressiveness, int age){
+
+    public Carnivorous(String health, String aggressiveness, int age, SizeOfAviary size){
         this.health = health;
         this.aggressiveness = aggressiveness;
         this.age = age;
+        this.size = size;
     }
 
 
@@ -44,14 +49,22 @@ public abstract class Carnivorous extends Animal {
         this.age = age;
     }
     @Override
-    public PrintStream eat(Food foodName) {
+    public PrintStream eat(Food foodName) throws WrongFoodException {
         if (foodName instanceof Grass) {
-            return System.out.printf("I don't eat %s. I need meat! \n", foodName.getName());
+            throw new WrongFoodException("Wrong food");
         } else {
             return System.out.printf("Now i eat %s \n", foodName.getName());
         }
     }
 
+
+    public SizeOfAviary getSize() {
+        return size;
+    }
+
+    public void setSize(SizeOfAviary size) {
+        this.size = size;
+    }
 }
 
 
