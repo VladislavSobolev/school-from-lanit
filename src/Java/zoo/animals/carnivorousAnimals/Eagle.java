@@ -1,6 +1,6 @@
 package Java.zoo.animals.carnivorousAnimals;
 
-import Java.zoo.SizeOfAviary;
+import Java.zoo.Size;
 import Java.zoo.animals.Fly;
 import Java.zoo.animals.Sleep;
 import Java.zoo.animals.Voice;
@@ -14,11 +14,12 @@ public class Eagle extends Carnivorous implements Fly, Sleep, Voice {
     private String name;
 
 
-    public Eagle(String health, String aggressiveness, int age, SizeOfAviary size) {
-        super( health,aggressiveness, age, size);
+    public Eagle(String health, String aggressiveness, int age) {
+        super( health,aggressiveness, age);
     }
-    public Eagle(String health, String aggressiveness, int age , SizeOfAviary size, String voice, String name){
-        super(health,aggressiveness,age, size);
+    public Eagle(String health, String aggressiveness, int age , String voice, String name, Size size){
+        super(health,aggressiveness,age);
+        super.setSize(size);
         this.voice = voice;
         this.name = name;
     }
@@ -62,23 +63,11 @@ public class Eagle extends Carnivorous implements Fly, Sleep, Voice {
         System.out.println("I love to fly");
     }
 
-    @Override
-    public int hashCode(){
-        return name == null ? 0 : name.hashCode();
-    }
 
     @Override
-    public boolean equals(Object obj){
-        if(obj == this)  {
-            return true;
-        }
-        if (obj == null || obj.getClass() != this.getClass()){
-            return false;
-        }
-        Eagle animal = (Eagle) obj;
-        return ((name != null) && (animal.name != null) && (name.equalsIgnoreCase(animal.name)));
+    public String getName() {
+        return name;
     }
-
 }
 
 

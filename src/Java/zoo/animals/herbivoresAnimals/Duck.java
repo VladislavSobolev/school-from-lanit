@@ -1,6 +1,6 @@
 package Java.zoo.animals.herbivoresAnimals;
 
-import Java.zoo.SizeOfAviary;
+import Java.zoo.Size;
 import Java.zoo.animals.Fly;
 import Java.zoo.animals.Sleep;
 import Java.zoo.animals.Swim;
@@ -12,11 +12,12 @@ public class Duck extends Herbivores implements Fly, Sleep, Swim, Voice {
     private String color;
     private String voice;
     private String name;
-    public Duck( String health, int age, SizeOfAviary size) {
-        super( health, age, size);
+    public Duck( String health, int age) {
+        super( health, age);
     }
-    public Duck( String health, String color, int age, SizeOfAviary size, String voice, String name) {
-        super( health, age, size);
+    public Duck( String health, String color, int age,  String voice, String name, Size size) {
+        super( health, age);
+        super.setSize(size);
         this.color = color;
         this.voice = voice;
         this.name = name;
@@ -62,21 +63,7 @@ public class Duck extends Herbivores implements Fly, Sleep, Swim, Voice {
     public void setName(String name) {
         this.name = name;
     }
-    @Override
-    public int hashCode(){
-        return name == null ? 0 : name.hashCode();
-    }
-    @Override
-    public boolean equals(Object obj){
-        if(obj == this)  {
-            return true;
-        }
-        if (obj == null || obj.getClass() != this.getClass()){
-            return false;
-        }
-        Duck animal = (Duck) obj;
-        return ((name != null) && (animal.name != null) && (name.equalsIgnoreCase(animal.name)));
-    }
+
 
 
 }

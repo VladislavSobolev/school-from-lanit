@@ -18,13 +18,13 @@ import Java.zoo.animals.herbivoresAnimals.Zebra;
 
 
 public class Zoo {
-    public static void main(String[] args) {
-        BlackPanther blackPanther = new BlackPanther("normal", "aggressive", 4, SizeOfAviary.LARGE, "RRRRRRRR","Nick");
-        Eagle eagle = new Eagle("Very good","aggressive", 7,SizeOfAviary.MEDIUM,"scream","John");
-        Raccoon raccoon = new Raccoon("bad", "not agressive",3,SizeOfAviary.MEDIUM,"HAHAHAHAHAHA", "Nate" );
-        Duck duck = new Duck("normal", "black", 3,SizeOfAviary.MEDIUM,"Quack quack quack","Conor");
-        Fish fish = new Fish("very good", 5,SizeOfAviary.MEDIUM,"Petr");
-        Zebra zebra = new Zebra("good",10,SizeOfAviary.MEDIUM,"yogogo","Tony");
+    public static <T extends Animal> void main(String[] args) {
+        BlackPanther blackPanther =  new BlackPanther("normal", "aggressive", 4,  "RRRRRRRR","Nick", Size.MEDIUM);
+        Eagle eagle = new Eagle("Very good","aggressive", 7,"scream","John",Size.MEDIUM);
+        Raccoon raccoon = new Raccoon("bad", "not agressive",3,"HAHAHAHAHAHA", "Nate",Size.SMALL);
+        Duck duck = new Duck("normal", "black", 3,"Quack quack quack","Conor",Size.SMALL);
+        Fish fish = new Fish("very good", 5,"Petr", Size.SMALL);
+        Zebra zebra = new Zebra("good",10,"yogogo","Tony",Size.MEDIUM);
         Clover clover = new Clover("Clover", 5,100);
         Dandelion dandelion = new Dandelion("dandelion", 4,70);
         Parsley parsley = new Parsley("parsley", 6,0);
@@ -44,22 +44,32 @@ public class Zoo {
         eagle.fly();
         eagle.sleep();
 
-        Animal[] poolOfAnimals =  {blackPanther, raccoon, duck, fish,zebra };
+        Swim[] poolOfAnimals =  {blackPanther, raccoon, duck, fish,zebra };
 
-        for(Animal animal : poolOfAnimals){
-            ((Swim)animal).swim();
-
+        for(Swim s : poolOfAnimals){
+            s.swim();
         }
+        System.out.println();
 
-        Aviary aviary = new Aviary(SizeOfAviary.MEDIUM);
-        aviary.addAnimal(eagle);
-        aviary.addAnimal(raccoon);
-        aviary.addAnimal(zebra);
-        aviary.addAnimal(duck);
-        aviary.addAnimal(blackPanther);
-        System.out.println(aviary.getLink(raccoon.getName()));
-        aviary.removeAnimal(raccoon.getName());
+        Aviary<T> aviary = new Aviary<T>();
+        Aviary<T> aviary1 = new Aviary<T>();
+        aviary.setSizeOfAviary(Size.MEDIUM);
+        aviary1.setSizeOfAviary(Size.SMALL);
+        aviary.addAnimal((T) blackPanther);
+        aviary.addAnimal((T) eagle);
+        aviary.addAnimal((T) raccoon);
+        aviary.addAnimal((T) zebra);
+        aviary1.addAnimal((T)duck);
+        aviary1.addAnimal((T) zebra);
+        aviary1.addAnimal((T) raccoon);
 
 
+        System.out.println(aviary.getLink(blackPanther.getName()));
+        aviary.allKeys();
+        aviary.removeAnimal(blackPanther.getName());
+        System.out.println();
+        aviary.allKeys();
+        System.out.println();
+        aviary1.allKeys();
     }
 }

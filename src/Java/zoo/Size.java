@@ -1,6 +1,6 @@
 package Java.zoo;
 
-public enum SizeOfAviary {
+public enum Size {
     SMALL,
     MEDIUM,
     LARGE,

@@ -6,51 +6,50 @@ import Java.zoo.animals.herbivoresAnimals.Herbivores;
 
 import java.util.HashMap;
 
-public class Aviary <A extends Animal>{
-    private SizeOfAviary sizeOfAviary;
-    private  HashMap< String, Animal> aviaryOfAnimal = new HashMap<>();
-    private Animal firstAnimal;
+public class Aviary<T extends Animal> {
+    private Size sizeOfAviary;
+    private HashMap<String, T> aviary = new HashMap<>();
+    private T firstAnimal;
 
-    public SizeOfAviary getSizeOfAviary() {
+
+
+
+    public Size getSizeOfAviary() {
         return sizeOfAviary;
     }
-    public Aviary(SizeOfAviary size){
-        sizeOfAviary = size;
 
-    }
 
-    public void setSizeOfAviary(SizeOfAviary sizeOfAviary) {
+    public void setSizeOfAviary(Size sizeOfAviary) {
         this.sizeOfAviary = sizeOfAviary;
     }
 
 
-    public void addAnimal(A animal){
-        if(aviaryOfAnimal.size() == 0){
-            aviaryOfAnimal.put(animal.getName(), animal);
+    public void addAnimal(T animal){
+        if((aviary.size() == 0) && (sizeOfAviary == animal.getSize())){
+            aviary.put(animal.getName(), animal);
             if(animal instanceof Carnivorous){
-                 firstAnimal = (Carnivorous) animal;
+                firstAnimal =  animal;
             } else if(animal instanceof Herbivores){
-                firstAnimal = (Herbivores) animal;
+                firstAnimal =  animal;
             }
         }
-        if(aviaryOfAnimal.size() > 0 && (firstAnimal instanceof Carnivorous) && (animal instanceof Carnivorous) &&
-                sizeOfAviary == ((Carnivorous) animal).getSize()){
-            aviaryOfAnimal.put(animal.getName(), animal);
-        }
-        if(aviaryOfAnimal.size() > 0 && (firstAnimal instanceof Herbivores) && (animal instanceof Herbivores) &&
-            sizeOfAviary == ((Herbivores) animal).getSize()){
-            aviaryOfAnimal.put(animal.getName(), animal);
-        }
 
+        if((sizeOfAviary == animal.getSize()) && (((firstAnimal instanceof Herbivores) && (animal instanceof Herbivores))
+            || ((firstAnimal instanceof Carnivorous) && (animal instanceof Carnivorous)))){
+            aviary.put(animal.getName(), animal);
+        }
     }
 
-    public Animal getLink(String name){
-        return aviaryOfAnimal.get(name);
+    public T getLink(String name){
+        return (T) aviary.get(name);
     }
     public void removeAnimal(String name){
-        aviaryOfAnimal.remove(name);
+        aviary.remove(name);
     }
 
-
-
+    public void allKeys(){
+        for(var name : aviary.keySet()){
+            System.out.println(name);
+        }
+    }
 }

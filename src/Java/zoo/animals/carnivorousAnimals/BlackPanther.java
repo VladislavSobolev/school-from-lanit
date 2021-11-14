@@ -1,6 +1,6 @@
 package Java.zoo.animals.carnivorousAnimals;
 
-import Java.zoo.SizeOfAviary;
+import Java.zoo.Size;
 import Java.zoo.animals.*;
 
 
@@ -9,11 +9,15 @@ public class BlackPanther extends Carnivorous implements Run, Sleep, Swim, Voice
     private  String voice;
     private String name;
 
-    public BlackPanther(String health, String aggressiveness, int age, SizeOfAviary size) {
-        super(health, aggressiveness,age,size);
+
+
+    public BlackPanther(String health, String aggressiveness, int age) {
+        super(health, aggressiveness,age);
+
     }
-    public BlackPanther( String health, String aggressiveness,int age, SizeOfAviary size, String voice, String name){
-        super(health, aggressiveness, age,size);
+    public BlackPanther( String health, String aggressiveness,int age,  String voice, String name, Size size){
+        super(health, aggressiveness, age);
+        super.setSize(size);
         this.voice = voice;
         this.name = name;
 
@@ -66,21 +70,9 @@ public class BlackPanther extends Carnivorous implements Run, Sleep, Swim, Voice
     public void setName(String name) {
         this.name = name;
     }
-    @Override
-    public boolean equals(Object obj){
-        if(obj == this)  {
-            return true;
-        }
-        if (obj == null || obj.getClass() != this.getClass()){
-            return false;
-        }
-        BlackPanther blackPan = (BlackPanther) obj;
-        return ((name != null) && (blackPan.name != null) && (name.equalsIgnoreCase(blackPan.name)));
-    }
-    @Override
-    public int hashCode(){
-        return name == null ? 0 : name.hashCode();
-    }
+
+
+
 
 
 }
