@@ -9,9 +9,6 @@ import java.util.HashMap;
 public class Aviary<T extends Animal> {
     private Size sizeOfAviary;
     private HashMap<String, T> aviary = new HashMap<>();
-    private T firstAnimal;
-
-
 
 
     public Size getSizeOfAviary() {
@@ -25,17 +22,7 @@ public class Aviary<T extends Animal> {
 
 
     public void addAnimal(T animal){
-        if((aviary.size() == 0) && (sizeOfAviary == animal.getSize())){
-            aviary.put(animal.getName(), animal);
-            if(animal instanceof Carnivorous){
-                firstAnimal =  animal;
-            } else if(animal instanceof Herbivores){
-                firstAnimal =  animal;
-            }
-        }
-
-        if((sizeOfAviary == animal.getSize()) && (((firstAnimal instanceof Herbivores) && (animal instanceof Herbivores))
-            || ((firstAnimal instanceof Carnivorous) && (animal instanceof Carnivorous)))){
+        if(sizeOfAviary == animal.getSize() ){
             aviary.put(animal.getName(), animal);
         }
     }

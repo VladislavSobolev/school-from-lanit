@@ -3,8 +3,10 @@ package Java.zoo;
 import Java.zoo.animals.Animal;
 import Java.zoo.animals.Swim;
 import Java.zoo.animals.carnivorousAnimals.BlackPanther;
+import Java.zoo.animals.carnivorousAnimals.Carnivorous;
 import Java.zoo.animals.carnivorousAnimals.Eagle;
 import Java.zoo.animals.carnivorousAnimals.Raccoon;
+import Java.zoo.animals.herbivoresAnimals.Herbivores;
 import Java.zoo.food.grass.Clover;
 import Java.zoo.food.grass.Dandelion;
 import Java.zoo.food.grass.Parsley;
@@ -18,7 +20,7 @@ import Java.zoo.animals.herbivoresAnimals.Zebra;
 
 
 public class Zoo {
-    public static <T extends Animal> void main(String[] args) {
+    public static void main(String[] args) {
         BlackPanther blackPanther =  new BlackPanther("normal", "aggressive", 4,  "RRRRRRRR","Nick", Size.MEDIUM);
         Eagle eagle = new Eagle("Very good","aggressive", 7,"scream","John",Size.MEDIUM);
         Raccoon raccoon = new Raccoon("bad", "not agressive",3,"HAHAHAHAHAHA", "Nate",Size.SMALL);
@@ -51,17 +53,16 @@ public class Zoo {
         }
         System.out.println();
 
-        Aviary<T> aviary = new Aviary<T>();
-        Aviary<T> aviary1 = new Aviary<T>();
+        Aviary<Carnivorous> aviary = new Aviary<>();
+        Aviary<Herbivores> aviary1 = new Aviary<>();
         aviary.setSizeOfAviary(Size.MEDIUM);
         aviary1.setSizeOfAviary(Size.SMALL);
-        aviary.addAnimal((T) blackPanther);
-        aviary.addAnimal((T) eagle);
-        aviary.addAnimal((T) raccoon);
-        aviary.addAnimal((T) zebra);
-        aviary1.addAnimal((T)duck);
-        aviary1.addAnimal((T) zebra);
-        aviary1.addAnimal((T) raccoon);
+        aviary.addAnimal(blackPanther);
+        aviary.addAnimal(eagle);
+        aviary.addAnimal(raccoon);
+        aviary1.addAnimal(duck);
+        aviary1.addAnimal(zebra);
+
 
 
         System.out.println(aviary.getLink(blackPanther.getName()));
